@@ -1,0 +1,21 @@
+#!/usr/bin/env lua
+
+local http = require 'socket.http'
+local json = require 'json'
+
+local Player = {} 
+
+function Player.new(id)
+  local o = setmetatable({}, { __index = Player })
+  o.id = id or 0
+  return o:get()
+end
+
+function Player:get(id)
+  if id then self.id = id end
+  local b, s = http.request(string.format("http://stats.xonotic.org/player/%d.json", self.id))
+  self.data = json.decode(b or "{}", true)
+  return self
+end
+
+return { player = player }
