@@ -18,4 +18,4 @@ function Player:get(id)
   return self
 end
 
-return { player = player }
+return { player = Player }
