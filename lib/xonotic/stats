@@ -13,7 +13,7 @@ end
 
 function Player:get(id)
   if id then self.id = id end
-  local b, s = http.request(string.format("http://stats.xonotic.org/player/%d.json", self.id))
+  local b = http.request(string.format("http://stats.xonotic.org/player/%d.json", self.id))
   self.data = json.decode(b or "{}", true)
   return self
 end
