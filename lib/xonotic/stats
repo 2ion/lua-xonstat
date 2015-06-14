@@ -37,10 +37,10 @@ function Player:lookup(key)
   return refs
 end
 
-function Player:lookup_path(key, expr)
+function Player:lookup_path(key, expr, ...)
   local ret = {}
     for p,v in pairs(self:lookup(key)) do
-    if p:match(expr) then
+    if p:match(expr, ...) then
       ret[p] = v
     end
   end
